@@ -40,6 +40,8 @@ class NearestNeighbor(object):
 		for i in xrange(num_test):
 			print i
 			distances = np.sqrt(np.sum(np.square(self.Xtr - X[i,:]),axis=1))
+            # self.Xtr - X[i,:] => I1p - I2p 이고 np.square함수를 통해서 제곱을 취한후 np.sum을 통해서 sigma
+            # 함수가 구현되었다. 마지막으로 np.sqrt 제곱근 함수를 사용하여 L2 distance의 결과값이 도출된다.
 			min_index = np.argmin(distances)
 			Ypred[i] = self.Ytr[min_index]
 			print 'prediction : %d' % Ypred[i]
@@ -60,7 +62,7 @@ nn = NearestNeighbor()
 nn.train(Xtr_rows, Ytr)
 
 Yte_predict = nn.predict(Xte_rows)
-print 'accuracy : %f' % (np.mean(Yte_predict == Yte))
+print 'accuracy of L2 distance : %f' % (np.mean(Yte_predict == Yte))
 
 
 
